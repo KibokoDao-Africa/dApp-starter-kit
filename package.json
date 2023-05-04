@@ -3,5 +3,14 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "hardhat": "^2.14.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }, 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deployTestnet": "npx hardhat run scripts/deploy.js --network polygon_mumbai",
+    "deployLocal": "npx hardhat run scripts/deploy.js --network localhost",
+    "runTest": "npx hardhat run test/DecentDisc.js"
   }
 }
