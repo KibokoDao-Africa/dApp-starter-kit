@@ -11,8 +11,8 @@ describe("SimpleStorage", function() {
     await simpleStorage.deployed(); 
   }); 
   
-  // testing the set function
-  describe("Set()", function () {
+  // testing the set() function
+  describe("set()", function () {
     it("Should store the data", async function() {
       const data = "Hello World!"; 
       await simpleStorage.set(data); 
@@ -20,14 +20,21 @@ describe("SimpleStorage", function() {
     })
   }); 
   
-  // testing the get function
-  describe("Get()", function() {
+  // testing the get() function
+  describe("get()", function() {
     it("Should retrieve the stored data", async function() {
       const data = "Hello world!"; 
       await simpleStorage.set(data); 
       const retrievedData = await simpleStorage.get(1); 
       expect(retrievedData).to.equal(data); 
-    })
-  })
+    }); 
+
+    // testing the require statement in get() 
+    it("Should reveret with an error of invalid data ID", async function() {
+      await expect(simpleStorage.get(0)).to.be.revertedWith("Invalid data ID!")
+    }); 
+    
+  }); 
+
   
 })
