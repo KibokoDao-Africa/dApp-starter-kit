@@ -5,8 +5,9 @@
     "hardhat": "^2.14.0"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
-  }, 
+    "dotenv": "^16.0.3",
+    "react-modal": "^3.16.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deployTestnet": "npx hardhat run scripts/deploy.js --network polygon_mumbai",
