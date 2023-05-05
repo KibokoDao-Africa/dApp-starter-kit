@@ -10,6 +10,8 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 import config from '../../config'
 
 const alchemyRpcProvider = config.rpcProvider; 
+// eslint-disable-next-line no-undef
+// const alchemyRpcProvider = process.env.REACT_APP_ALCHEMY_RPC_PROVIDER
 
 const { chains, provider , webSocketProvider } = configureChains(
     [polygonMumbai],

@@ -1,0 +1,45 @@
+/* Style for the container */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 95vh;
+    background-color: #242222;
+  }
+  
+  /* Style for the logo */
+  .header-logo {
+    width: 80%;
+    height: 100px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Style for the title */
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Style for the warning box */
+  .warning-box {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffeeba;
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+  }
+  
+  /* Style for the warning icon */
+  .warning-icon {
+    font-size: 2rem;
+    color: red;
+    margin-right: 10px;
+  }
+  
