@@ -12,7 +12,7 @@
 }
 
 .modal-container {
- width: 70%;
+ width: 50%;
  height: 50vh;
  background-color: #fff;
  display: flex;
@@ -32,17 +32,30 @@
   color: var(--main-black);
 }
 
+.wallet-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px;
+  text-decoration: none;
+  text-align: center;
+}
+
 .modal-connectors {
   display: flex;
   flex-direction: column;
 }
 
 .error {
-  background-color: rgb(226, 118, 118);
   height: 30px;
   padding: 10px;
+  margin: 20px;
   display: flex;
   align-items: center;
+  background-color: rgb(230, 129, 129);
   border-radius: 10px;
-  margin: 10px;
 }

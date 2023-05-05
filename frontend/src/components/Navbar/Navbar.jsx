@@ -2,6 +2,7 @@
 import './Navbar.css'
 import { useDisconnect, WagmiConfig } from "wagmi";
 import { client } from '../../WalletFunctionalities/WagmiWallet';
+import { useEffect } from 'react';
 
 function Navbar({ openModal, account, walletConnected, setWalletConnected  }) {
   const { disconnect } = useDisconnect();
@@ -16,6 +17,10 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected  }) {
       console.error(error)
     }
   }
+
+  useEffect(() => {
+    console.log("Account is: ", account); 
+  })
 
 
   return (
