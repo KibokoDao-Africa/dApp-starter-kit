@@ -36,6 +36,7 @@ function App() {
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
         setWalletConnected={setWalletConnected}
+        setAccount={setAccount}
       />
     </WagmiConfig>
   )

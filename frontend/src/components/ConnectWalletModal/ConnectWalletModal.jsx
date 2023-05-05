@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 
 // eslint-disable-next-line react/prop-types
-const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected }) => {
+const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAccount }) => {
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
 
   const wagmiClient = client; 
@@ -16,13 +16,14 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected }) => 
       console.log("Handle sign up with Wagmi");
       connect(connector)
       setWalletConnected(true)
+      closeModal(); 
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    console.log("Connectors: ", connectors); 
+    setAccount(address)
   }, []) 
 
   return modalIsOpen && (

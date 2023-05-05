@@ -34,7 +34,12 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected  }) {
 
         {
           walletConnected && (
-            <button className='connect-button' onClick={handleWagmiDisconnect}>Disconnect Wallet</button>
+            <div>
+              <button className='connect-button'>
+                { account.slice(0,6) + "..." + account.slice(38,42) }
+              </button>
+              <button className='connect-button' onClick={handleWagmiDisconnect}>Disconnect Wallet</button>
+            </div>
           )
         }
         
