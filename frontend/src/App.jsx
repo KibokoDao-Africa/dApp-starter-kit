@@ -26,6 +26,7 @@ function App() {
 
   return (
     <WagmiConfig client={client}>
+       
        <ConnectWalletModal 
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}

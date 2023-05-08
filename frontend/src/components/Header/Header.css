@@ -29,6 +29,7 @@
   /* Style for the warning box */
   .warning-box {
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
     background-color: #ffeeba;
@@ -41,5 +42,62 @@
     font-size: 2rem;
     color: red;
     margin-right: 10px;
+  }
+
+  /* Style for the message container */
+  .message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #615e5e;
+    width: 90%;
+    height: 40%;
+    border-radius: 8px;
+    box-shadow: 0 0 16px 1px rgb(184, 179, 179) inset; 
+  }
+
+  .message-container p {
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form input {
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    width: 25rem;
+    height: 40px;
+  }
+
+  .form button {
+    width: 10rem;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .form button:hover {
+    background-color: #242222;
+    cursor: pointer;
+    color: #ffeeba;
+  }
+
+  .success-div {
+    background-color: rgb(142, 224, 142);
+    color: #585344;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
   }
   

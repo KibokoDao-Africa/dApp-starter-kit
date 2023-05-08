@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@coinbase/wallet-sdk": "^3.6.6",
+    "ethers": "^5.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
     "react-modal": "^3.16.1",
+    "usehooks-ts": "^2.9.1",
     "wagmi": "^0.12.13"
   },
   "devDependencies": {

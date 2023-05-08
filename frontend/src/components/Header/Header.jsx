@@ -1,7 +1,40 @@
-import React from 'react';
+import { useState } from 'react';
+import SimpleStorage  from '../../contracts/SimpleStorage.json';
+import abi  from '../../contracts/SimpleStorage.json';  
+import { useDebounce } from 'usehooks-ts'
+import { usePrepareContractWrite, useContractWrite, useWaitForTransaction  } from 'wagmi'
 import './Header.css'
 
-function Header({walletConnected}) {
+function Header({ walletConnected }) {
+  const [inputMessage, setInputMessage] = useState("");
+  const debouncedMessage = useDebounce(inputMessage, 500);  
+  
+  const { config } = usePrepareContractWrite({
+    address: "0x2B783Ed21673848c09e5D0D7Da61AAF5eb6792cD", 
+    abi: [abi.abi[2]], 
+    functionName: 'set', 
+    args: [debouncedMessage], 
+    enabled: Boolean(debouncedMessage), 
+  })
+
+  const { write, data }  = useContractWrite(config); 
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  })
+
+  const sendInputMessage = async (e) => {
+    try {
+      e.preventDefault();
+      console.log("Write is: ", write)
+      write?.(); 
+      // setInputMessage(""); 
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  
+
   return (
     <div className='container'>
 
@@ -13,12 +46,37 @@ function Header({walletConnected}) {
       {
         !walletConnected ? (
             <div className='warning-box'>
-              <p>Connect your wallet to get started</p>
+              <p>Connect your wallet to get started</p><br/>
+              <p>Check out the <a>documentation</a></p>
             </div>
         ) : (
-            <div className='warning-box'>
-              <p>Wallet connected</p>
-            </div>
+            <div className='message-container'>
+              <p>Send a message to blockchain</p>
+              <form className='form'>
+                <input 
+                  type='text'
+                  placeholder='Write any message'
+                  onChange={ (e) => setInputMessage(e.target.value) }
+                  value={inputMessage}
+                />
+              <button onClick={sendInputMessage}>Send message</button>
+              </form>
+                  { 
+                    isLoading && (
+                      <div className='loading-div'>
+                        <p>Sending message...</p>
+                      </div>
+                    ) 
+                  }
+                  {isSuccess && (
+                    <div className='success-div'>
+                      Message sent succesfully! 
+                      <div>
+                        <a href={`https://mumbai.polygonscan.com/tx/${data?.hash}`} target='_blank'>Check polygonscan</a>
+                      </div>
+                    </div>
+                  )}
+              </div>
         )
       }
 
