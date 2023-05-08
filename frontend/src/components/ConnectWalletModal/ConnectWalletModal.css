@@ -23,8 +23,16 @@
 }
 
 .modal-button {
+  width: 100%;
   display: flex;
-  
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.modal-button button {
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .loading-statement {
