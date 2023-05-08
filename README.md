@@ -1,13 +1,16 @@
-# Sample Hardhat Project
+# dApp Starter Kit
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+Welcome! 
 
-Try running some of the following tasks:
+This is a starter kit for building decentralized applications (dApps) using Ethereum smart contracts and React.js frontend. It provides a basic setup for building, testing, and deploying your dApp.
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+The starter kit includes a sample smart contract written in Solidity, a React.js frontend, and a Hardhat configuration for deploying to the Ethereum test networks. 
+It also includes scripts for compiling, deploying, and testing your dApp.
+
+Whether you're a beginner or an experienced developer, this starter kit provides a solid foundation for building your next dApp. Get started quickly with our easy-to-use setup, or customize it to fit your specific needs.
+
+Happy coding!
+
+# Getting started: 
+The live site can be found over [here]() 
+
