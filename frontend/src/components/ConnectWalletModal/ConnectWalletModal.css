@@ -13,13 +13,15 @@
 
 .modal-container {
  width: 50%;
- height: 50vh;
+ height: 60vh;
  background-color: #fff;
  display: flex;
  align-items: center;
- justify-content: center;
+ justify-content: space-between;
  border-radius: 10px;
  flex-direction: column;
+ padding: 1rem;
+ padding-bottom: 100px;
 }
 
 .modal-button {
@@ -27,6 +29,7 @@
   display: flex;
   justify-content: flex-start;
   padding-left: 10px;
+  cursor: pointer;
 }
 
 .modal-button button {
@@ -56,6 +59,7 @@
 .modal-connectors {
   display: flex;
   flex-direction: column;
+  margin-top: 0;
 }
 
 .error {

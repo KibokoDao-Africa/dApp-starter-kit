@@ -1,5 +1,5 @@
 import './ConnectWalletModal.css'; 
-import { client } from '../../WalletFunctionalities/WagmiWallet';
+import { client} from '../../WalletFunctionalities/WagmiWallet';
 import { useAccount, useConnect } from 'wagmi';
 import { useEffect, useState } from 'react';
 import renderConnectors from './RenderConnectors';
@@ -15,10 +15,18 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAc
 
   const handleSignUpWithWagmi = async (connector) => {
     try {
-      console.log("Handle sign up with Wagmi");
+      console.log("Connecting...");
       connect(connector)
-      setWalletConnected(true)
-      closeModal();
+      console.log("Is connected: ", isConnected); 
+      if (!isConnected && address == undefined ){
+        setWalletConnected(false)
+      } else {
+        setWalletConnected(true)
+      }
+      // closeModal();
+      setTimeout(() => {
+        closeModal()
+      }, 10000)
     } catch (error) {
       console.error(error)
     }
@@ -42,7 +50,7 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAc
       <div className="modal-container">
       
         <div className='modal-button'>
-          <button onClick={closeModal}>X</button>
+          <div onClick={closeModal}>X</div>
         </div>
 
         <div className='modal-connectors'>

@@ -10,10 +10,6 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [account, setAccount] = useState(""); 
   const [walletConnected, setWalletConnected] = useState(false); 
-  const [loading, setLoading] = useState(false); 
-  const [loadingStatement, setLoadingStatement] = useState(""); 
-  const [success, setSuccess] = useState(false); 
-  const [error, setError] = useState(false); 
 
 
   function openModal() {
@@ -39,6 +35,7 @@ function App() {
         account={account} 
         walletConnected={walletConnected} 
         setWalletConnected={setWalletConnected}
+        setAccount={setAccount}
       />
 
       <Header 

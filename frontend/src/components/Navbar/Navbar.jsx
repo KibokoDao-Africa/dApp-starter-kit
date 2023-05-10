@@ -4,7 +4,7 @@ import { useDisconnect, WagmiConfig } from "wagmi";
 import { client } from '../../WalletFunctionalities/WagmiWallet';
 import { useEffect } from 'react';
 
-function Navbar({ openModal, account, walletConnected, setWalletConnected  }) {
+function Navbar({ openModal, account, walletConnected, setWalletConnected, setAccount  }) {
   const { disconnect } = useDisconnect();
 
   // Disconnect connected wallet 
@@ -12,6 +12,7 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected  }) {
     try {
       disconnect(); 
       setWalletConnected(false); 
+      setAccount(""); 
       console.log("Account disconnected!"); 
     } catch (error){
       console.error(error)
