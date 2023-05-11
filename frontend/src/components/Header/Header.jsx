@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import SimpleStorage  from '../../contracts/SimpleStorage.json';
+import { useState, useEffect } from 'react';
+import SimpleStorage  from '../../contracts/contracts-address.json';
 import abi  from '../../contracts/SimpleStorage.json';  
 import { useDebounce } from 'usehooks-ts'
 import { usePrepareContractWrite, useContractWrite, useWaitForTransaction  } from 'wagmi'
@@ -10,7 +10,7 @@ function Header({ walletConnected }) {
   const debouncedMessage = useDebounce(inputMessage, 500);  
   
   const { config } = usePrepareContractWrite({
-    address: "0x2B783Ed21673848c09e5D0D7Da61AAF5eb6792cD", 
+    address: SimpleStorage.SimpleStorage, 
     abi: [abi.abi[2]], 
     functionName: 'set', 
     args: [debouncedMessage], 
@@ -33,6 +33,21 @@ function Header({ walletConnected }) {
       console.error(error)
     }
   }
+
+  useEffect(() => {
+    console.log("Success: ", isSuccess); 
+
+    if (isSuccess){
+      setTimeout(() => {
+        // setInputMessage(""); 
+        let elements = document.getElementsByClassName('success-div');
+        for (let i = 0; i < elements.length; i++) {
+          elements[i].style.display = 'none';
+        }
+      }, 3000)
+    }
+
+  })
   
 
   return (

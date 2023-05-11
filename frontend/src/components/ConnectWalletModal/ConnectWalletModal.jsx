@@ -18,15 +18,22 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAc
       console.log("Connecting...");
       connect(connector)
       console.log("Is connected: ", isConnected); 
+
       if (!isConnected && address == undefined ){
         setWalletConnected(false)
       } else {
         setWalletConnected(true)
       }
       // closeModal();
-      setTimeout(() => {
+      if (address){
+        setTimeout(() => {
+          closeModal()
+        }, 3000)
+      } else {
+        setTimeout(() => {
         closeModal()
       }, 10000)
+      }
     } catch (error) {
       console.error(error)
     }
