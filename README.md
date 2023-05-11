@@ -85,6 +85,17 @@ The command for running the deploy script is:
 
 This command deploys the contract to `mumbai testnet` 
 
+## frontend 
+Dependencies: 
+`wagmi`   
+`coinbase/wallet-sdk`
+`usehooks-ts` 
+`react-modal` 
+
+
+
+
+
 
 
 
