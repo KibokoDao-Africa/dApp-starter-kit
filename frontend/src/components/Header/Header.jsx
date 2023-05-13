@@ -61,7 +61,7 @@ function Header({ walletConnected }) {
         !walletConnected ? (
             <div className='warning-box'>
               <p>Connect your wallet to get started</p><br/>
-              <p>Check out the <a>documentation</a></p>
+              <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank'>documentation</a></p>
             </div>
         ) : (
             <div className='message-container'>
