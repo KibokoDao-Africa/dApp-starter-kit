@@ -1,4 +1,3 @@
-// import {useState} from 'react'; 
 import './Navbar.css'
 import { useDisconnect, WagmiConfig } from "wagmi";
 import { client } from '../../WalletFunctionalities/WagmiWallet';
@@ -20,6 +19,7 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected, setAc
   }
 
   useEffect(() => {
+    // Console log the account connected
     console.log("Account is: ", account); 
   })
 
