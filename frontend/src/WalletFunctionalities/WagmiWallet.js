@@ -1,6 +1,5 @@
 import { createClient, configureChains } from 'wagmi'
 import { polygonMumbai } from 'wagmi/chains'
- 
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
  
@@ -11,13 +10,11 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 import config from '../../config'
 
 const alchemyRpcProvider = config.rpcProvider; 
-// eslint-disable-next-line no-undef
-// const alchemyRpcProvider = process.env.REACT_APP_ALCHEMY_RPC_PROVIDER
 
 const { chains, provider , webSocketProvider } = configureChains(
-    [polygonMumbai],
-    [alchemyProvider({ apiKey: alchemyRpcProvider }), publicProvider()],
-  )
+    [polygonMumbai], // Configure whichever chains you would like to use, look at line 2 for the imports
+    [alchemyProvider({ apiKey: alchemyRpcProvider }), publicProvider()], // Change the alchemyRpcProvider to your own provider
+)
 
 export const client = createClient({
     autoConnect: true,

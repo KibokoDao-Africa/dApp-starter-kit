@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import SimpleStorage  from '../../contracts/contracts-address.json';
-import abi  from '../../contracts/SimpleStorage.json';  
+import SimpleStorage  from '../../contracts/contracts-address.json'; // Imports contract address
+import abi  from '../../contracts/SimpleStorage.json';  // Imports ABI
 import { useDebounce } from 'usehooks-ts'
 import { usePrepareContractWrite, useContractWrite, useWaitForTransaction  } from 'wagmi'
 import './Header.css'
@@ -26,7 +26,6 @@ function Header({ walletConnected }) {
   const sendInputMessage = async (e) => {
     try {
       e.preventDefault();
-      console.log("Write is: ", write)
       write?.(); 
       // setInputMessage(""); 
     } catch (error) {
@@ -35,7 +34,7 @@ function Header({ walletConnected }) {
   }
 
   useEffect(() => {
-    console.log("Success: ", isSuccess); 
+    // console.log("Success: ", isSuccess); 
 
     if (isSuccess){
       setTimeout(() => {

@@ -9,13 +9,17 @@ import renderConnectors from './RenderConnectors';
 const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAccount }) => {
   const [ethereumPresent, setEthereumPresent] = useState(false); 
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
-
+  
+  // Client needs to be declared over here or the useAccount() hook will bring an error
   const wagmiClient = client; 
   const { address, connector, isConnected } = useAccount(); 
-
+  
+  // Function for connecting wallet
   const handleSignUpWithWagmi = async (connector) => {
     try {
       console.log("Connecting...");
+
+      // Destructured from useConnect() import, passes the 'connector' as a parameter
       connect(connector)
       console.log("Is connected: ", isConnected); 
 
@@ -24,7 +28,6 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAc
       } else {
         setWalletConnected(true)
       }
-      // closeModal();
       if (address){
         setTimeout(() => {
           closeModal()

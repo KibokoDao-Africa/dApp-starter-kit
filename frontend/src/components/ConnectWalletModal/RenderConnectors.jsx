@@ -1,5 +1,3 @@
-import React from 'react';
-
 const buttonStyle = (connector) => ({
   backgroundColor: '#333',
   color: '#fff',
