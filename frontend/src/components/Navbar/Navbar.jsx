@@ -26,7 +26,7 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected, setAc
   return (
       <div className="navbar">
         <div className="logo">
-          <img src="./vite.svg" alt="logo" />
+          {/* <img src="./logo4.png" alt="logo" /> */}
           <p>DappStarterKit</p>
         </div>
 
