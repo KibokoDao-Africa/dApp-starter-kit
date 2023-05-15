@@ -1,33 +1,31 @@
 import { useState, useEffect } from 'react';
-import SimpleStorage  from '../../contracts/contracts-address.json'; // Imports contract address
-import abi  from '../../contracts/SimpleStorage.json';  // Imports ABI
-// import { useDebounce } from 'usehooks-ts'
-// import { usePrepareContractWrite, useContractWrite, useWaitForTransaction  } from 'wagmi'
+import contractInstance from '../../ContractInstance/ContractInstance';
 import './Header.css'
 
 function Header({ walletConnected }) {
   const [inputMessage, setInputMessage] = useState("");
-  // const debouncedMessage = useDebounce(inputMessage, 500);  
-  
-  // const { config } = usePrepareContractWrite({
-  //   address: SimpleStorage.SimpleStorage, 
-  //   abi: [abi.abi[2]], 
-  //   functionName: 'set', 
-  //   args: [debouncedMessage], 
-  //   enabled: Boolean(debouncedMessage), 
-  // })
-
-  // const { write, data }  = useContractWrite(config); 
-
-  // const { isLoading, isSuccess } = useWaitForTransaction({
-  //   hash: data?.hash,
-  // })
+  const [isLoading, setIsLoading] = useState(false); 
+  const [isSuccess, setIsSuccess] = useState(false); 
+  const [txHash, setTxHash] = useState(""); 
 
   const sendInputMessage = async (e) => {
     try {
       e.preventDefault();
-      // write?.(); 
-      // setInputMessage(""); 
+      const simpleStorage = await contractInstance(true); 
+      
+      setIsLoading(true); 
+      const tx = await simpleStorage.set(inputMessage); 
+      await tx.wait(); 
+      
+      setIsLoading(false); 
+      setTxHash(tx.hash); 
+
+      setIsSuccess(true); 
+
+      setTimeout(() => {
+        setIsSuccess(false)
+      }, 5000); 
+
     } catch (error) {
       console.error(error)
     }
@@ -75,21 +73,21 @@ function Header({ walletConnected }) {
                 />
               <button onClick={sendInputMessage}>Send message</button>
               </form>
-                  {/* { 
+                  { 
                     isLoading && (
                       <div className='loading-div'>
                         <p>Sending message...</p>
                       </div>
                     ) 
-                  } */}
-                  {/* {isSuccess && (
+                  }
+                  {isSuccess && (
                     <div className='success-div'>
                       Message sent succesfully! 
                       <div>
-                        <a href={`https://mumbai.polygonscan.com/tx/${data?.hash}`} target='_blank'>Check polygonscan</a>
+                        <a href={`https://mumbai.polygonscan.com/tx/${txHash}`} target='_blank'>Check polygonscan</a>
                       </div>
                     </div>
-                  )} */}
+                  )}
               </div>
         )
       }
