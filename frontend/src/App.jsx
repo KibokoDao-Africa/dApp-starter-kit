@@ -2,9 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import ConnectWalletModal from './components/ConnectWalletModal/ConnectWalletModal';
-// import { WagmiConfig } from 'wagmi'
-// import { client } from './WalletFunctionalities/WagmiWallet';
 import Header from './components/Header/Header';
+
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -22,7 +21,7 @@ function App() {
 
   return (
     <>
-       
+
        <ConnectWalletModal 
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}

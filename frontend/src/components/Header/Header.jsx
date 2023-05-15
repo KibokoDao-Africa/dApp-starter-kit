@@ -32,18 +32,12 @@ function Header({ walletConnected }) {
   }
 
   useEffect(() => {
-    // console.log("Success: ", isSuccess); 
-
-    // if (isSuccess){
-      setTimeout(() => {
-        // setInputMessage(""); 
-        let elements = document.getElementsByClassName('success-div');
-        for (let i = 0; i < elements.length; i++) {
-          elements[i].style.display = 'none';
-        }
-      }, 3000)
-    // }
-
+    setTimeout(() => {
+      let elements = document.getElementsByClassName('success-div');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'none';
+      }
+    }, 3000)
   })
   
 

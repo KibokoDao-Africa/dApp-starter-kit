@@ -1,14 +1,11 @@
 import './Navbar.css'
-// import { useDisconnect } from "wagmi";
 import { useEffect } from 'react';
 
 function Navbar({ openModal, account, walletConnected, setWalletConnected, setAccount  }) {
-  // const { disconnect } = useDisconnect();
 
   // Disconnect connected wallet 
   const handleDisconnect = () => {
     try {
-      // disconnect(); 
       setWalletConnected(false); 
       setAccount(""); 
       console.log("Account disconnected!"); 
@@ -26,7 +23,6 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected, setAc
   return (
       <div className="navbar">
         <div className="logo">
-          {/* <img src="./logo4.png" alt="logo" /> */}
           <p>DappStarterKit</p>
         </div>
 
