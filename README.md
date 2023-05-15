@@ -19,7 +19,7 @@ There are 2 branches:
 1. Main 
 2. metamask-wallet 
 
-`Main`: recommended wheb building large scalable dApps, supports coinbase, walletconnect and metamask wallets
+`Main`: recommended when building large scalable dApps. Supports coinbase, walletconnect and metamask wallets
 
 `metamask-wallet`: recommended when doing smaller projects, only supports Metamask wallet
 
