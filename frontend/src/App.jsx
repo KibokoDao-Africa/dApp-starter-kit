@@ -2,8 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import ConnectWalletModal from './components/ConnectWalletModal/ConnectWalletModal';
-import { WagmiConfig } from 'wagmi'
-import { client } from './WalletFunctionalities/WagmiWallet';
+// import { WagmiConfig } from 'wagmi'
+// import { client } from './WalletFunctionalities/WagmiWallet';
 import Header from './components/Header/Header';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   }
 
   return (
-    <WagmiConfig client={client}>
+    <>
        
        <ConnectWalletModal 
         modalIsOpen={modalIsOpen}
@@ -41,7 +41,8 @@ function App() {
       <Header 
         walletConnected={walletConnected}
       />
-    </WagmiConfig>
+    </>
+
   )
 }
 
