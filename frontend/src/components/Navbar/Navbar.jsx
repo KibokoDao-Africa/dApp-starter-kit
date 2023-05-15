@@ -28,7 +28,6 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected, setAc
     <WagmiConfig client={client}>
       <div className="navbar">
         <div className="logo">
-          <img src="./vite.svg" alt="logo" />
           <p>DappStarterKit</p>
         </div>
 

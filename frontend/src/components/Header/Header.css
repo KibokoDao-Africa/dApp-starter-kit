@@ -9,14 +9,21 @@
     background-color: #242222;
   }
   
-  /* Style for the logo */
+/* Style for the logo */
   .header-logo {
-    width: 80%;
+    width: 50%;
     height: 100px;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 1.5rem;
+  } 
+
+  .header-logo img {
+    width: 20%;
+    border-radius: 50%;
+    margin: 0.5rem;
   }
   
   /* Style for the title */
