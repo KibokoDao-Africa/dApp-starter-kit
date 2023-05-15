@@ -52,7 +52,7 @@ function Header({ walletConnected }) {
 
       <div className='header-logo'>
         <h1 className='title'>Dapp starter kit</h1>
-        <img src='./vite.svg' alt="logo" />
+        <img src='./logo4.png' alt="logo" />
       </div>
        
       {
