@@ -1,15 +1,14 @@
 import './Navbar.css'
-import { useDisconnect, WagmiConfig } from "wagmi";
-import { client } from '../../WalletFunctionalities/WagmiWallet';
+// import { useDisconnect } from "wagmi";
 import { useEffect } from 'react';
 
 function Navbar({ openModal, account, walletConnected, setWalletConnected, setAccount  }) {
-  const { disconnect } = useDisconnect();
+  // const { disconnect } = useDisconnect();
 
   // Disconnect connected wallet 
-  const handleWagmiDisconnect = () => {
+  const handleDisconnect = () => {
     try {
-      disconnect(); 
+      // disconnect(); 
       setWalletConnected(false); 
       setAccount(""); 
       console.log("Account disconnected!"); 
@@ -25,7 +24,6 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected, setAc
 
 
   return (
-    <WagmiConfig client={client}>
       <div className="navbar">
         <div className="logo">
           <img src="./vite.svg" alt="logo" />
@@ -48,13 +46,12 @@ function Navbar({ openModal, account, walletConnected, setWalletConnected, setAc
                   </button>
                 )
               }
-              <button className='connect-button' onClick={handleWagmiDisconnect}>Disconnect Wallet</button>
+              <button className='connect-button' onClick={handleDisconnect}>Disconnect Wallet</button>
             </div>
           )
         }
         
       </div>
-    </WagmiConfig>
   );
 }
 

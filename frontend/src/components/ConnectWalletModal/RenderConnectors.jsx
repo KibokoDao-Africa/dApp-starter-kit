@@ -9,21 +9,15 @@ const buttonStyle = (connector) => ({
   opacity: connector.ready ? 1 : 0.5,
 });
 
-function renderConnectors(connectors, handleSignUpWithWagmi, isLoading, pendingConnector) {
+function renderConnectors(handleMetamaskSignUp) {
   return (
     <div className='modal-connectors'>
-      {connectors.map((connector) => (
         <button
-          key={connector.id}
-          disabled={!connector.ready}
-          onClick={() => handleSignUpWithWagmi({ connector })}
-          style={buttonStyle(connector)}
+          onClick={ () => handleMetamaskSignUp() }
+          style={buttonStyle("Metamask")}
         >
-          {connector.name}
-          {!connector.ready && ' (unsupported)'}
-          {isLoading && connector.id === pendingConnector?.id && ' (connecting)'}
+          Metamask
         </button>
-      ))}
     </div>
   );
 }

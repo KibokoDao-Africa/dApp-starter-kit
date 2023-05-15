@@ -1,45 +1,23 @@
 import './ConnectWalletModal.css'; 
-import { client} from '../../WalletFunctionalities/WagmiWallet';
-import { useAccount, useConnect } from 'wagmi';
 import { useEffect, useState } from 'react';
 import renderConnectors from './RenderConnectors';
+import { connectWallet } from '../../ConnectWallet/ConnectWallet';
 
 
 // eslint-disable-next-line react/prop-types
 const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAccount }) => {
   const [ethereumPresent, setEthereumPresent] = useState(false); 
-  const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
-  
-  // Client needs to be declared over here or the useAccount() hook will bring an error
-  const wagmiClient = client; 
-  const { address, connector, isConnected } = useAccount(); 
-  
-  // Function for connecting wallet
-  const handleSignUpWithWagmi = async (connector) => {
-    try {
-      console.log("Connecting...");
 
-      // Destructured from useConnect() import, passes the 'connector' as a parameter
-      connect(connector)
-      console.log("Is connected: ", isConnected); 
+  const handleMetamaskSignUp = async () => {
+    const account = await connectWallet(); 
+    setAccount(account)
 
-      if (!isConnected && address == undefined ){
-        setWalletConnected(false)
-      } else {
-        setWalletConnected(true)
-      }
-      if (address){
-        setTimeout(() => {
-          closeModal()
-        }, 3000)
-      } else {
-        setTimeout(() => {
-        closeModal()
-      }, 10000)
-      }
-    } catch (error) {
-      console.error(error)
-    }
+    setWalletConnected(true)
+
+    setTimeout(() => {
+      closeModal()
+    }, 3000)
+
   }
 
   const checkIfWalletInstalled = () => {
@@ -51,7 +29,6 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAc
   }
 
   useEffect(() => {
-    setAccount(address)
     checkIfWalletInstalled(); 
   }, []) 
 
@@ -67,7 +44,7 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAc
           <p>Choose your preferred wallet provider</p>
           { 
             ethereumPresent && (
-              renderConnectors(connectors, handleSignUpWithWagmi, isLoading, pendingConnector)
+              renderConnectors(handleMetamaskSignUp)
             )
           }
           {
@@ -80,23 +57,10 @@ const ConnectWalletModal = ({ closeModal, modalIsOpen, setWalletConnected, setAc
             )
           }
         </div>
-        {error && <div className='error'>{error.message}</div>}
       </div>
     </div>
   );
 };
-
-const buttonStyle = (connector) => ({
-  backgroundColor: '#333',
-  color: '#fff',
-  padding: '10px',
-  margin: '5px',
-  border: 'none',
-  borderRadius: '5px',
-  cursor: 'pointer',
-  opacity: connector.ready ? 1 : 0.5,
-});
-
 
 
 export default ConnectWalletModal;
