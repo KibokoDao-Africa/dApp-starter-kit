@@ -15,6 +15,15 @@ Whether you're a beginner or an experienced developer, this starter kit provides
 Happy coding!
 
 # Getting started: 
+There are 2 branches:
+1. Main 
+2. metamask-wallet 
+
+`Main`: recommended when building large scalable dApps. Supports coinbase, walletconnect and metamask wallets
+
+`metamask-wallet`: recommended when doing smaller projects, only supports Metamask wallet
+
+## MAIN BRANCH
 
 Run the following commands:
 
