@@ -16,10 +16,10 @@ Happy coding!
 
 # Getting started: 
 There are 2 branches:
-1. Main 
+1. wagmi-wallet 
 2. metamask-wallet 
 
-`Main`: recommended when building large scalable dApps. Supports coinbase, walletconnect and metamask wallets
+`wagmi-wallet`: recommended when building large scalable dApps. Supports coinbase, walletconnect and metamask wallets
 
 `metamask-wallet`: recommended when doing smaller projects, only supports Metamask wallet
 
@@ -83,7 +83,7 @@ dapp-starter-kit/
 └── README.md 
 ``` 
 
-NB: The file structure of the `Main` branch is a bit different from the file structure of the `metamask-wallet` branch
+NB: The file structure of the `wagmi-wallet` branch is a bit different from the file structure of the `metamask-wallet` branch
 
 Sample contract is found in `contracts/SimpleStorage.sol`
 
