@@ -37,8 +37,8 @@ Run the following commands:
 
 `npm run dev`  
 
-Link to demo: 
-https://www.loom.com/share/512ac2e1e464495b903f8c49573f2ce9
+<!-- Link to demo: 
+https://www.loom.com/share/512ac2e1e464495b903f8c49573f2ce9 -->
 
 
 ## File structure 
