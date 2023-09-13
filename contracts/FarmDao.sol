@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "hardhat/console.sol";
+// import "hardhat/console.sol";
 
 contract FarmDAO {
     // Variables
@@ -96,9 +96,7 @@ contract FarmDAO {
     }
     
     // Create DAo
-    function createDao(address _farmer1, address _farmer2, string memory _description, string memory _name, string memory _farmReports, string memory _financialReports) public {
-        console.log("Address 1 is: ", _farmer1); 
-        console.log("Address 2 is: ", _farmer2); 
+    function createDao(address _farmer1, address _farmer2, string memory _description, string memory _name, string memory _farmReports, string memory _financialReports) public { 
 
         daoID++;
         uint _amountInvested = 0;
