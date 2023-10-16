@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import contractInstance from '../../ContractInstance/ContractInstance';
+import { useAccount } from 'wagmi'; 
 import './Header.css'
 
 function Header({ walletConnected }) {
@@ -7,6 +8,8 @@ function Header({ walletConnected }) {
   const [isLoading, setIsLoading] = useState(false); 
   const [isSuccess, setIsSuccess] = useState(false); 
   const [txHash, setTxHash] = useState(""); 
+
+  const { isDisconnected } = useAccount()
 
   const sendInputMessage = async (e) => {
     try {
@@ -50,7 +53,7 @@ function Header({ walletConnected }) {
       </div>
        
       {
-        !walletConnected ? (
+        isDisconnected ? (
             <div className='warning-box'>
               <p>Connect your wallet to get started</p><br/>
               <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank'>documentation</a></p>
