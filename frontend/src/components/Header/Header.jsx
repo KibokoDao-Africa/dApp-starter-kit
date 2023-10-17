@@ -6,7 +6,7 @@ import { Counter as contractAddress } from '../contracts/contracts-address.json'
 import abi from '../contracts/Counter.json'
 import './Header.css'
 
-function Header({ walletConnected }) {
+function Header() {
   const [counterValue, setCounterValue] = useState(0); 
 
   const { isDisconnected } = useAccount()
@@ -76,14 +76,13 @@ function Header({ walletConnected }) {
 
       <div className='header-logo'>
         <h1 className='title'>Dapp starter kit</h1>
-        {/* <img src='./logo4.png' alt="logo" /> */}
       </div>
        
       {
         isDisconnected ? (
             <div className='warning-box'>
               <p>Connect your wallet to get started</p><br/>
-              <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank'>documentation</a></p>
+              <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank' rel="noreferrer">documentation</a></p>
             </div>
         ) : (
           <div className='message-container'>
