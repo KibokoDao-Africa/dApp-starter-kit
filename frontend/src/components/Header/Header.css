@@ -107,4 +107,16 @@
     text-align: center;
     margin-top: 10px;
   }
+
+  .functionButton {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin: 10px;
+  }
   

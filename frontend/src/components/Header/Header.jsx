@@ -3,22 +3,19 @@ import contractInstance from '../../ContractInstance/ContractInstance';
 import './Header.css'
 
 function Header({ walletConnected }) {
-  const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false); 
   const [isSuccess, setIsSuccess] = useState(false); 
-  const [txHash, setTxHash] = useState(""); 
+  const [counterValue, setCounterValue] = useState(0); 
 
-  const sendInputMessage = async (e) => {
+  // Function for increasing count
+  const increaseCount = async () => {
     try {
-      e.preventDefault();
-      const simpleStorage = await contractInstance(true); 
-      
+      const counter = await contractInstance(true); 
       setIsLoading(true); 
-      const tx = await simpleStorage.set(inputMessage); 
+      const tx = await counter.increaseCount(); 
       await tx.wait(); 
       
       setIsLoading(false); 
-      setTxHash(tx.hash); 
 
       setIsSuccess(true); 
 
@@ -31,7 +28,41 @@ function Header({ walletConnected }) {
     }
   }
 
+  // Function for decreasing count 
+  const decreaseCount = async () => {
+    try {
+      const counter = await contractInstance(true); 
+      setIsLoading(true); 
+      const tx = await counter.decreaseCount(); 
+      await tx.wait(); 
+      
+      setIsLoading(false); 
+
+      setIsSuccess(true); 
+
+      setTimeout(() => {
+        setIsSuccess(false)
+      }, 5000); 
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // Function for reading count from smart contract
+  const readCount = async () => {
+    try {
+      const counter = await contractInstance(true); 
+      const count = await counter.getCount(); 
+      setCounterValue(count.toNumber()); 
+     console.log("Count is: ", count.toNumber()); 
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
   useEffect(() => {
+    readCount(); 
     setTimeout(() => {
       let elements = document.getElementsByClassName('success-div');
       for (let i = 0; i < elements.length; i++) {
@@ -53,36 +84,30 @@ function Header({ walletConnected }) {
         !walletConnected ? (
             <div className='warning-box'>
               <p>Connect your wallet to get started</p><br/>
-              <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank'>documentation</a></p>
+              <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank' rel="noreferrer">documentation</a></p>
             </div>
         ) : (
-            <div className='message-container'>
-              <p>Send a message to blockchain</p>
-              <form className='form'>
-                <input 
-                  type='text'
-                  placeholder='Write any message'
-                  onChange={ (e) => setInputMessage(e.target.value) }
-                  value={inputMessage}
-                />
-              <button onClick={sendInputMessage}>Send message</button>
-              </form>
-                  { 
-                    isLoading && (
-                      <div className='loading-div'>
-                        <p>Sending message...</p>
-                      </div>
-                    ) 
-                  }
-                  {isSuccess && (
-                    <div className='success-div'>
-                      Message sent succesfully! 
-                      <div>
-                        <a href={`https://mumbai.polygonscan.com/tx/${txHash}`} target='_blank'>Check polygonscan</a>
-                      </div>
-                    </div>
-                  )}
+          <div className='message-container'>
+          <p>Count is { counterValue }</p>
+          <div>
+            <button className='functionButton' onClick={ () => increaseCount() }>Click to Increase Count +</button>
+            <button className='functionButton' onClick={ () => decreaseCount() }>Click to Decrease Count -</button>
+          </div>
+          {/* Loading and success messages for increaseCount */}
+          {isLoading && (
+            <div className='loading-div'>
+              <p>Calling function...</p>
+            </div>
+          )}
+          {isSuccess && (
+            <div className='success-div'>
+              Success!
+              <div>
+                {/* Additional details or links */}
               </div>
+            </div>
+          )}
+        </div>
         )
       }
 

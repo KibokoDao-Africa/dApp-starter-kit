@@ -16,20 +16,20 @@ Happy coding!
 
 # Getting started: 
 There are 2 branches:
-1. wagmi-wallet 
-2. metamask-wallet 
+1. multi-wallet-support 
+2. metamask-only 
 
-`wagmi-wallet`: recommended when building large scalable dApps. Supports coinbase, walletconnect and metamask wallets
+`multi-wallet-support `: recommended when building large scalable dApps. Supports a number of wallets from coinbase, trust wallet, walletconnect, metamask e.t.c
 
-`metamask-wallet`: recommended when doing smaller projects, only supports Metamask wallet
+`metamask-only`: recommended when doing smaller projects, only supports Metamask wallet
 
-## METAMASK BRANCH: 
+## METAMASK ONLY =: 
 
 Run the following commands:
 
 `git clone https://github.com/Stephen-Kimoi/dApp-starter-kit.git` 
 
-`git checkout metamask-wallet` 
+`git checkout metamask-only` 
 
 `cd dApp-starter-kit` & `npm install` 
 
