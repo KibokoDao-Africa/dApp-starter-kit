@@ -86,14 +86,14 @@ When you run `npm run dev` this is the site that you'll see:
 Click on the `connect wallet` button and this pop-up will appear: 
 
 For metamask-only branch: 
-![Pop Up UI](./Images/MetamaskOnlyPopUp.png)
+![Pop Up UI](./Images/WalletPopup.png)
 
 For mutli wallet branch: 
-![Pop Up UI](./Images/MultiWalletSupport.png)
+![Pop Up UI](./Images/WagmiWalletPopup.png)
 
 
 Once you connet your wallet succesfully this is what you'll see (For both branches): 
-![Landing site](./Images/LandingSite.png)
+![Landing site](./Images/LandingPage.png)
 
 You can now start editing it to suit the project you're doing
 
