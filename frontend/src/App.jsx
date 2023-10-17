@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 
 // Web3 Modal connection 
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
-import { WagmiConfig } from 'wagmi'
+import { WagmiConfig, useNetwork, useSwitchNetwork, useConfig } from 'wagmi'
 import { polygonMumbai, polygonZkEvmTestnet } from 'wagmi/chains'
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 
@@ -29,13 +29,12 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [account, setAccount] = useState(""); 
   const [walletConnected, setWalletConnected] = useState(false); 
+
   const { open } = useWeb3Modal()
   
-
-  function openModal() {
+  async function openModal() {
     open(); 
     setWalletConnected(true); 
-    // setModalIsOpen(true);
   }
 
   function closeModal() {
