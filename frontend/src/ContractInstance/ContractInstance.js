@@ -1,4 +1,4 @@
-import abi  from '../contracts/SimpleStorage.json'; 
+import abi  from '.../contracts/Counter.json'; 
 import { SimpleStorage as contractAddress } from '../contracts/contracts-address.json'; 
 import { ethers } from 'ethers';
 
