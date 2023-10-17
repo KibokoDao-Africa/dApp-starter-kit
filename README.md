@@ -23,69 +23,42 @@ There are 2 branches:
 
 `metamask-only`: recommended when doing smaller projects, only supports Metamask wallet
 
-## METAMASK ONLY =: 
+## Installation: 
 
-Run the following commands:
+Clone the repository:
 
 `git clone https://github.com/Stephen-Kimoi/dApp-starter-kit.git` 
 
-`git checkout metamask-only` 
+Depending on the type of project you are doing, checkout to the branch you'll be using
 
-`cd dApp-starter-kit` & `npm install` 
+`git checkout metamask-only`  - for smaller projects 
+
+`git checkout multi-wallet-support` - for large scalable dApps 
+
+`npm install` 
 
 `cd frontend` & `npm install` 
 
+Once dependencies are installed run the following command:
+
+`cp .env.example .env; `
+
+Now add your alchemy api key i.e `ALCHEMY_API_KEY` and private key i.e `PRIVATE_KEY`
+
+You can get your alchemy api key over [here](https://www.alchemyapi.io/) 
+You can see how to get your private key over [here](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key)
+
+Finally run: 
+
 `npm run dev`  
+
+This is the UI you'l see: 
+![UI](./Images/UI.png)
 
 <!-- Link to demo: 
 https://www.loom.com/share/512ac2e1e464495b903f8c49573f2ce9 -->
 
-
-## File structure 
-This is the file structure: 
-```
-dapp-starter-kit/
-├── contracts/
-│   ├── SimpleStorage.sol
-├── frontend/
-│   ├── public/
-│   │   ├── logo.png
-│   └── src/
-│        ├── assets
-│        ├── components/ 
-│        │    ├── ConnectWalletModal/ 
-│        │    │    ├── ConnectWalletModal.css 
-│        │    │    ├── ConnectWalletModal.jsx
-│        │    │    ├── RenderConnectors.jsx
-│        │    ├── Header/ 
-│        │    │   ├── Header.css 
-│        │    │   ├── Header.jsx 
-│        │    ├── Navbar/ 
-│        │    │   ├──  Navbar.css
-│        │    │   ├── Navbar.jsx
-│        ├── ConnectWallet/ 
-│             ├── ConnectWallet.js
-│        ├── ContractInstance/ 
-│        │    ├── ContractInstance.js
-│        ├── contracts/ 
-│        │    ├── contract-address.json 
-│        │    ├── SimpleStorage.json 
-│        ├── App.css
-│        ├── App.jsx
-│        ├── index.css 
-│        ├── main.jsx
-├── scripts/ 
-│   ├── deploy.js 
-├── test/
-│   └── SimpleStorage.js 
-├── hardhat.config.js
-├── package.json
-└── README.md 
-``` 
-
-NB: The file structure of the `wagmi-wallet` branch is a bit different from the file structure of the `metamask-wallet` branch
-
-Sample contract is found in `contracts/SimpleStorage.sol`
+Sample contract is found in `contracts/Counter.sol`
 
 The deploy script is found in `scripts/deploy.js` 
 
@@ -93,7 +66,7 @@ The deploy script is found in `scripts/deploy.js`
 ```
 ├── contracts/ 
     ├── contract-address.json - contains contract address 
-    ├── SimpleStorage.json - contains contract ABI
+    ├── Contract.json - contains contract ABI
 ``` 
 
 The command for running the deploy script is: 
@@ -105,23 +78,28 @@ If you want to test the smart contract locally without having to deploy it:
 1. Run `npx hardhat node` for starting the hardhat node network. 
 2. Run `npm run deployLocal` deploys contract to local hardhat network that you've just started. 
 
-## frontend 
-Dependencies: 
-`vite` 
-`react-modal` 
-`ethers` 
+## Site description 
 
 When you run `npm run dev` this is the site that you'll see: 
+![UI](./Images/UI.png)
 
 Click on the `connect wallet` button and this pop-up will appear: 
 
-Once you connet your wallet succesfully this is what you'll see: 
+For metamask-only branch: 
+![Pop Up UI](./Images/MetamaskOnlyPopUp.png)
 
-You can write any message and send it to see whether your transaction will be successfull 
+For mutli wallet branch: 
+![Pop Up UI](./Images/MultiWalletSupport.png)
+
+
+Once you connet your wallet succesfully this is what you'll see (For both branches): 
+![Landing site](./Images/LandingSite.png)
+
+You can now start editing it to suit the project you're doing
 
 ### NB: The contract is deployed in `mumbai testnet`, therefore ensure you've switched to mumbai testnet and have some `mumbai matic` to prevent any errors. 
 
-## Functions description:
+<!-- ## Functions description:
 
 ### Wallet Connection: 
 We are using `Ether js` to connect to our wallets. 
@@ -180,7 +158,7 @@ import contractInstance from '../../ContractInstance/ContractInstance';
 
 We are performing the contract write operation normally using ethers js
 
-We call the `set` function from the `simpleStorgae` contract instance gotten from the `contractInstance` import. 
+We call the `set` function from the `simpleStorgae` contract instance gotten from the `contractInstance` import.  -->
 
 
 
