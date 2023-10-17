@@ -99,7 +99,7 @@ You can now start editing it to suit the project you're doing
 
 ### NB: The contract is deployed in `mumbai testnet`, therefore ensure you've switched to mumbai testnet and have some `mumbai matic` to prevent any errors. 
 
-## Functions description:
+<!-- ## Functions description:
 
 ### Wallet Connection: 
 We are using `Ether js` to connect to our wallets. 
@@ -158,7 +158,7 @@ import contractInstance from '../../ContractInstance/ContractInstance';
 
 We are performing the contract write operation normally using ethers js
 
-We call the `set` function from the `simpleStorgae` contract instance gotten from the `contractInstance` import. 
+We call the `set` function from the `simpleStorgae` contract instance gotten from the `contractInstance` import.  -->
 
 
 
