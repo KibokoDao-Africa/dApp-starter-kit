@@ -1,18 +1,13 @@
 {
-  "name": "hardhat-project",
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "chai": "^4.3.10",
-    "hardhat": "^2.14.0",
-    "mocha": "^10.2.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.3"
-  },
+  "name": "create-kiboko-dapp-test",
+  "version": "1.0.0",
+  "description": "Welcome to Kiboko dapp starter kit!",
+  "bin": "./bin/cli.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deployTestnet": "npx hardhat run scripts/deploy.js --network polygon_mumbai",
-    "deployLocal": "npx hardhat run scripts/deploy.js --network localhost",
-    "runTest": "npx hardhat run test/Counter.js"
-  }
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
