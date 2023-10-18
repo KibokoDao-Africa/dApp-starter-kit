@@ -1,5 +1,5 @@
 {
-  "name": "create-kiboko-dapp-test",
+  "name": "create-kiboko-dapp",
   "version": "1.0.0",
   "description": "Welcome to Kiboko dapp starter kit!",
   "bin": "./bin/cli.js",
