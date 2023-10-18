@@ -35,7 +35,7 @@ if(!installedDeps) {
 }
 
 console.log(
-  `Congratulations! You are ready to build dapps the Kiboko way! 🦛 💻 . Follow the following command to get started`
+  `Congratulations! You are ready to build dapps the Kiboko way! 🦛 💻. Follow the following command to get started`
 );
 
 console.log(`cd ${repoName} && cd frontend && npm run dev`); 
