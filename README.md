@@ -23,6 +23,12 @@ There are 2 branches:
 
 `metamask-only`: recommended when doing smaller projects, only supports Metamask wallet
 
+Run 
+
+`npx create-kiboko-dapp project-name`  
+
+or 
+
 ## Installation: 
 
 Clone the repository:
