@@ -78,6 +78,7 @@ function Header() {
 
       <div className='header-logo'>
         <h1 className='title'>Dapp starter kit</h1>
+        {/* <img src='./vite.svg' alt="logo" /> */}
       </div>
        
       {
@@ -88,7 +89,7 @@ function Header() {
             </div>
         ) : (
           <div className='message-container'>
-          {chain.id !== 80001 && ( // Check if the chain is not 80001
+          {chain && chain.id !== 80001 && ( // Check if the chain is defined and not 80001
             <div className='chain-warning-box'>
               <p>Warning: You are not connected to the correct chain. Switch to <a href='https://chainlist.org/?testnets=true&search=mumbai' target='_blank' rel="noreferrer">Polygon Mumbai</a></p>
             </div>

@@ -15,25 +15,12 @@ Whether you're a beginner or an experienced developer, this starter kit provides
 Happy coding!
 
 # Getting started: 
-There are 2 branches:
-1. multi-wallet-support 
-2. metamask-only 
+You can run the command: 
+```npx create-kiboko-dapp project-name```
 
-`multi-wallet-support `: recommended when building large scalable dApps. Supports a number of wallets from coinbase, trust wallet, walletconnect, metamask e.t.c
+Run the following commands:
 
-`metamask-only`: recommended when doing smaller projects, only supports Metamask wallet
-
-Run 
-
-`npx create-kiboko-dapp project-name`  
-
-or 
-
-## Installation: 
-
-Clone the repository:
-
-`git clone https://github.com/Stephen-Kimoi/dApp-starter-kit.git` 
+`git clone https://github.com/KibokoDao-Africa/dApp-starter-kit.git` 
 
 Depending on the type of project you are doing, checkout to the branch you'll be using
 
