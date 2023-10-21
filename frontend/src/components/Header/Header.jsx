@@ -12,9 +12,6 @@ function Header() {
 
   const { isDisconnected } = useAccount(); 
   const { chain } = useNetwork()
-
-  console.log("Connected chain is: ", chain); 
-
   
   // Wagmi style of calling a smart contract function (we are calling "increaseCount" function from Counter smart contract)
   const { isLoading, isSuccess, write } = useContractWrite({
