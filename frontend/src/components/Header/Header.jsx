@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi'; 
 import { useContractWrite } from 'wagmi'; 
 import { useContractRead } from 'wagmi'; 
+import { useNetwork } from 'wagmi'
 import { Counter as contractAddress } from '../contracts/contracts-address.json'; 
 import abi from '../contracts/Counter.json'
 import './Header.css'
@@ -9,7 +10,11 @@ import './Header.css'
 function Header() {
   const [counterValue, setCounterValue] = useState(0); 
 
-  const { isDisconnected } = useAccount()
+  const { isDisconnected } = useAccount(); 
+  const { chain } = useNetwork()
+
+  console.log("Connected chain is: ", chain); 
+
   
   // Wagmi style of calling a smart contract function (we are calling "increaseCount" function from Counter smart contract)
   const { isLoading, isSuccess, write } = useContractWrite({
@@ -86,6 +91,11 @@ function Header() {
             </div>
         ) : (
           <div className='message-container'>
+          {chain.id !== 80001 && ( // Check if the chain is not 80001
+            <div className='chain-warning-box'>
+              <p>Warning: You are not connected to the correct chain. Switch to <a href='https://chainlist.org/?testnets=true&search=mumbai' target='_blank' rel="noreferrer">Polygon Mumbai</a></p>
+            </div>
+          )}
           <p>Count is { counterValue }</p>
           <div>
             <button className='functionButton' onClick={ () => increaseCount() }>Click to Increase Count +</button>
