@@ -1,51 +1,75 @@
 import { useState, useEffect } from 'react';
-import SimpleStorage  from '../../contracts/contracts-address.json'; // Imports contract address
-import abi  from '../../contracts/SimpleStorage.json';  // Imports ABI
-import { useDebounce } from 'usehooks-ts'
-import { usePrepareContractWrite, useContractWrite, useWaitForTransaction  } from 'wagmi'
+import { useAccount } from 'wagmi'; 
+import { useContractWrite } from 'wagmi'; 
+import { useContractRead } from 'wagmi'; 
+import { useNetwork } from 'wagmi'
+import { Counter as contractAddress } from '../contracts/contracts-address.json'; 
+import abi from '../contracts/Counter.json'
 import './Header.css'
 
-function Header({ walletConnected }) {
-  const [inputMessage, setInputMessage] = useState("");
-  const debouncedMessage = useDebounce(inputMessage, 500);  
+function Header() {
+  const [counterValue, setCounterValue] = useState(0); 
+
+  const { isDisconnected } = useAccount(); 
+  const { chain } = useNetwork()
   
-  const { config } = usePrepareContractWrite({
-    address: SimpleStorage.SimpleStorage, 
-    abi: [abi.abi[2]], 
-    functionName: 'set', 
-    args: [debouncedMessage], 
-    enabled: Boolean(debouncedMessage), 
-  })
+  // Wagmi style of calling a smart contract function (we are calling "increaseCount" function from Counter smart contract)
+  const { isLoading, isSuccess, write } = useContractWrite({
+    address: contractAddress,
+    abi: abi.abi,
+    functionName: 'increaseCount',
+  }); 
 
-  const { write, data }  = useContractWrite(config); 
-
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  })
-
-  const sendInputMessage = async (e) => {
+  // We are calling "decreaseCount" function from the Counter smart contract
+  const { isLoading: loading, isSuccess: success, write: decreaseCountWrite } = useContractWrite({
+    address: contractAddress,
+    abi: abi.abi,
+    functionName: 'decreaseCount',
+  }); 
+  
+  // Wagmi style of reading a smart contract (we are calling "getCoubt" function from smart contract)
+  const { data:CounterValue } = useContractRead({
+    address: contractAddress,
+    abi: abi.abi,
+    functionName: 'getCount',
+    watch: true 
+  }); 
+  
+  // Function for increasing count
+  const increaseCount = async () => {
     try {
-      e.preventDefault();
-      write?.(); 
-      // setInputMessage(""); 
+       write(); 
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // Function for decreasing count 
+  const decreaseCount = async () => {
+    try {
+      decreaseCountWrite()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // Function for reading count from smart contract
+  const readCount = async () => {
+    try {
+      setCounterValue(Number(CounterValue)); 
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    // console.log("Success: ", isSuccess); 
-
-    if (isSuccess){
-      setTimeout(() => {
-        // setInputMessage(""); 
-        let elements = document.getElementsByClassName('success-div');
-        for (let i = 0; i < elements.length; i++) {
-          elements[i].style.display = 'none';
-        }
-      }, 3000)
-    }
-
+    readCount(); 
+    setTimeout(() => {
+      let elements = document.getElementsByClassName('success-div');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'none';
+      }
+    }, 3000)
   })
   
 
@@ -54,43 +78,56 @@ function Header({ walletConnected }) {
 
       <div className='header-logo'>
         <h1 className='title'>Dapp starter kit</h1>
-        <img src='./logo.png' alt="logo" />
+        {/* <img src='./vite.svg' alt="logo" /> */}
       </div>
        
       {
-        !walletConnected ? (
+        isDisconnected ? (
             <div className='warning-box'>
               <p>Connect your wallet to get started</p><br/>
-              <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank'>documentation</a></p>
+              <p>Check out the <a href='https://github.com/Stephen-Kimoi/dApp-starter-kit#readme' target='_blank' rel="noreferrer">documentation</a></p>
             </div>
         ) : (
-            <div className='message-container'>
-              <p>Send a message to blockchain</p>
-              <form className='form'>
-                <input 
-                  type='text'
-                  placeholder='Write any message'
-                  onChange={ (e) => setInputMessage(e.target.value) }
-                  value={inputMessage}
-                />
-              <button onClick={sendInputMessage}>Send message</button>
-              </form>
-                  { 
-                    isLoading && (
-                      <div className='loading-div'>
-                        <p>Sending message...</p>
-                      </div>
-                    ) 
-                  }
-                  {isSuccess && (
-                    <div className='success-div'>
-                      Message sent succesfully! 
-                      <div>
-                        <a href={`https://mumbai.polygonscan.com/tx/${data?.hash}`} target='_blank'>Check polygonscan</a>
-                      </div>
-                    </div>
-                  )}
+          <div className='message-container'>
+          {chain && chain.id !== 80001 && ( // Check if the chain is defined and not 80001
+            <div className='chain-warning-box'>
+              <p>Warning: You are not connected to the correct chain. Switch to <a href='https://chainlist.org/?testnets=true&search=mumbai' target='_blank' rel="noreferrer">Polygon Mumbai</a></p>
+            </div>
+          )}
+          <p>Count is { counterValue }</p>
+          <div>
+            <button className='functionButton' onClick={ () => increaseCount() }>Click to Increase Count +</button>
+            <button className='functionButton' onClick={ () => decreaseCount() }>Click to Decrease Count -</button>
+          </div>
+          {/* Loading and success messages for increaseCount */}
+          {isLoading && (
+            <div className='loading-div'>
+              <p>Calling increaseCount function...</p>
+            </div>
+          )}
+          {isSuccess && (
+            <div className='success-div'>
+              Success for increaseCount!
+              <div>
+                {/* Additional details or links */}
               </div>
+            </div>
+          )}
+          {/* Loading and success messages for decreaseCount */}
+          {loading && (
+            <div className='loading-div'>
+              <p>Calling decreaseCount function...</p>
+            </div>
+          )}
+          {success && (
+            <div className='success-div'>
+              Success for decreaseCount!
+              <div>
+                {/* Additional details or links */}
+              </div>
+            </div>
+          )}
+        </div>
         )
       }
 

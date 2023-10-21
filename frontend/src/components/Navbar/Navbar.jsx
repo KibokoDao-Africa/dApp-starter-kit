@@ -1,59 +1,34 @@
 import './Navbar.css'
-import { useDisconnect, WagmiConfig } from "wagmi";
-import { client } from '../../WalletFunctionalities/WagmiWallet';
-import { useEffect } from 'react';
+import { useAccount } from 'wagmi'; 
 
-function Navbar({ openModal, account, walletConnected, setWalletConnected, setAccount  }) {
-  const { disconnect } = useDisconnect();
 
-  // Disconnect connected wallet 
-  const handleWagmiDisconnect = () => {
-    try {
-      disconnect(); 
-      setWalletConnected(false); 
-      setAccount(""); 
-      console.log("Account disconnected!"); 
-    } catch (error){
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    // Console log the account connected
-    console.log("Account is: ", account); 
-  })
-
+function Navbar({ openModal }) {
+  const { address, isDisconnected } = useAccount()
+  console.log("Address: ", address); 
 
   return (
-    <WagmiConfig client={client}>
       <div className="navbar">
         <div className="logo">
           <p>DappStarterKit</p>
         </div>
 
         {
-          !walletConnected && (
-            <button className="connect-button" onClick={openModal} >Connect Wallet</button>
+          isDisconnected && (
+            <>
+              <button className="connect-button" onClick={openModal} >Connect Wallet</button>
+            </>
           )
         }
 
         {
-          walletConnected && (
+          !isDisconnected && (
             <div>
-              {
-                account && (
-                  <button className='connect-button'>
-                    { account.slice(0,6) + "..." + account.slice(38,42) }
-                  </button>
-                )
-              }
-              <button className='connect-button' onClick={handleWagmiDisconnect}>Disconnect Wallet</button>
+              <button className='connect-button' onClick={openModal}>Disconnect Wallet</button>
             </div>
           )
         }
         
       </div>
-    </WagmiConfig>
   );
 }
 
