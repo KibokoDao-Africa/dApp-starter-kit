@@ -15,6 +15,14 @@ Whether you're a beginner or an experienced developer, this starter kit provides
 Happy coding!
 
 # Getting started: 
+Open your terminal and run: 
+```npx create-kiboko-dapp project-name```
+
+You can now start hacking 💪
+
+Or if you want to clone the repository directly: 
+```git clone https://github.com/KibokoDao-Africa/dApp-starter-kit.git```
+
 There are 2 branches:
 1. Main 
 2. metamask-wallet 
@@ -27,7 +35,7 @@ There are 2 branches:
 
 Run the following commands:
 
-`git clone https://github.com/Stephen-Kimoi/dApp-starter-kit.git` 
+`git clone https://github.com/KibokoDao-Africa/dApp-starter-kit.git` 
 
 `cd dApp-starter-kit` & `npm install` 
 
